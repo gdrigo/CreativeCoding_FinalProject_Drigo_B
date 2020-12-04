@@ -18,11 +18,16 @@
 
 //source slang
 
-
+let boroughs = []; //name, subhotspots[], location
 let hotspots = []; //name, subhotspots[], location
 let soundBag = [];
 
 let brooklynText = 'BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYNBROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN  BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN';
+let manhattanText = 'MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN'; 
+// let queensText = 'QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS';
+// let bronxText = 'BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX';
+// let statenIslandText = 'STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND';
+
 let fontSizeMax = 20;
 let fontSizeMin = 10;
 let spacing = 12; // line height
@@ -32,7 +37,8 @@ let spotRadius = 25;
 
 let scaleBy = 1.5;
 
-
+let currDepth = 0; //intiailized at zero, which means that user starts on homepage
+let boroughNum = 1; //used to identify boroughs. increases by 1 each time a new borough is created
 
 let cp1 = "assets/centralPark1.jpg";
 
@@ -70,104 +76,162 @@ function setup() {
 }
 
 function draw() {
-
+	// console.log("in draw");
 	// // scale(scaleBy);
 	// background(0);
 	// // translate(-centralPark.x/2, -centralPark.y/2);
-	grandView();
+	grandView(); //start at homepage
 	// console.log(mouseX,mouseY);
 	noLoop();
 }
 
-class Subspot {
+class Spot { //
 
-	constructor(locX,locY,image,sound="",name="") {
+	constructor(depth, locX,locY,image,sound="",name="") {
 		this.name = name;
 		this.x = locX;
 		this.y = locY;
 		this.img = image;
 		this.sound = sound;
+		this.depth = depth;
 	}
 
 	display() { //shows all subhotspots
 		//show image filled with text (use videos??)
 		// drawText(cp1, brooklynText);
 		image(cp1, 0, 0, width, height);
-		//play sound
+		drawBackButton();
+		//play sound. can add sound to collection by click
 	}
 
 }
 
- 
-class Hotspot { //cluster of Subspots
-	constructor(name,locX,locY,subspots=[]) {
+class Borough {
+	// constructor(name, image, locX,locY, spots=[]){
+	// 	//name, image, area
+	// 	//hover
+	// 	//display
+	// }
+	constructor(name,locX,locY,spots=[]) {
 		// this.radius = (setNum);//actually dont need this. will be in display
 		this.name = name;
 		this.x = locX;
 		this.y = locY;
-		this.subspots = subspots;
+		this.spots = spots;
+		this.boroughNum = boroughNum; boroughNum++;
 		// this.sound = sdlkj; not sure if including this 
 	}
 
-	// display() { //shows all subhotspots
-
-	// 	//fading circle at this.x,this.y ACTUALLY NO. MANAGE THAT IN A GLOBAL DISPLAY FUNC FOR GENRAL SCENE
-	// }
-
-	display() { //zooms in and shows subspots
+	display() { //borough view. Shows zoomed in version of borough and its hotspots 
 		//iterate through subspot array, placing a faded circle at each location
 
-		//zoom in
-
-		
-		// translate(this.x, this.y);
-  		// scale(scaleBy);
-  		// translate(-mx, -my);
-
-  		// translate();
-  		// console.log("zooming in");
-  		image(water, 0, 0);
-  		image(cpZoom, 0, 0);
+  		image(water, 0, 0); //baackground
+  		image(cpZoom, 0, 0); //zoomed in image
+  		drawBackButton();
   		// drawText(cpZoom,brooklynText);
 
-  		//show subspots
+  		//show spots
   		let s;
-  		for (s in this.subspots) {
+  		for (s in this.spots) {
 			fill(255,255,255);
 			ellipseMode(CENTER);
-			ellipse(this.subspots[s].x, this.subspots[s].y, spotRadius, spotRadius);
-			console.log("yep");
+			ellipse(this.spots[s].x, this.spots[s].y, spotRadius, spotRadius);
+			console.log("yepThissaSpot");
 		}
-
 
 		//show subspots
 		// noLoop();
-
 	}
 
-	addSubspot(locX,locY,image="",sound="",name="") {
-		this.subspots.push(new Subspot(locX,locY,image,sound,name));
-	}
 
-	// this.clicked = function() {
-	// 	if(mouseX <= this.x+15 && mouseX >= this.x-15 && mouseY <= this.y+15 && mouseY >= this.y-15 ) {
-
-	// 	}
+	// addSpot(locX,locY,image="",sounds=[],name="") {
+	// 	this.spots.push(new Spot(locX,locY,image,sound,name));
 	// }
-
+	//creates and adds a new Spot to this.spots. 
+	addSpot(locX,locY,image="",sound="",name="") {
+		let spotDepth = (this.boroughNum*10)+this.spots.length+1; //used to update currDepth when user viewing it 
+		this.spots.push(new Spot(spotDepth,locX,locY,image,sound,name));
+	}
 
 }
+ 
+// class Hotspot { //cluster of Subspots
+// 	constructor(name,locX,locY,subspots=[]) {
+// 		// this.radius = (setNum);//actually dont need this. will be in display
+// 		this.name = name;
+// 		this.x = locX;
+// 		this.y = locY;
+// 		this.subspots = subspots;
+// 		// this.sound = sdlkj; not sure if including this 
+// 	}
+
+// 	// display() { //shows all subhotspots
+
+// 	// 	//fading circle at this.x,this.y ACTUALLY NO. MANAGE THAT IN A GLOBAL DISPLAY FUNC FOR GENRAL SCENE
+// 	// }
+
+// 	display() { //zooms in and shows subspots
+// 		//iterate through subspot array, placing a faded circle at each location
+
+// 		//zoom in
+
+		
+// 		// translate(this.x, this.y);
+//   		// scale(scaleBy);
+//   		// translate(-mx, -my);
+
+//   		// translate();
+//   		// console.log("zooming in");
+//   		image(water, 0, 0);
+//   		image(cpZoom, 0, 0);
+//   		// drawText(cpZoom,brooklynText);
+
+//   		//show subspots
+//   		let s;
+//   		for (s in this.subspots) {
+// 			fill(255,255,255);
+// 			ellipseMode(CENTER);
+// 			ellipse(this.subspots[s].x, this.subspots[s].y, spotRadius, spotRadius);
+// 			console.log("yep");
+// 		}
+
+
+// 		//show subspots
+// 		// noLoop();
+
+// 	}
+
+// 	addSubspot(locX,locY,image="",sound="",name="") {
+// 		this.subspots.push(new Subspot(locX,locY,image,sound,name));
+// 	}
+
+// 	// this.clicked = function() {
+// 	// 	if(mouseX <= this.x+15 && mouseX >= this.x-15 && mouseY <= this.y+15 && mouseY >= this.y-15 ) {
+
+// 	// 	}
+// 	// }
+
+
+// }
 
 
 function mouseClicked() {
 	//check mouse position. if on hotspot, trigger its scene
 
-	if (mouseX <= centralPark.x+15 && mouseX >= centralPark.x-15 && mouseY <= centralPark.y+15 && mouseY >= centralPark.y-15 ) {
-		centralPark.display();
+	if (mouseX <= mn.x+15 && mouseX >= mn.x-15 && mouseY <= mn.y+15 && mouseY >= mn.y-15 ) {
+		// drawText(manhattan, manhattanText);
+		mn.display();
+		currDepth=1;
 		//add flag
 	}
-	if (mouseX <= centralPark.subspots[0].x+15 && mouseX >= centralPark.subspots[0].x-15 && mouseY <= centralPark.subspots[0].y+15 && mouseY >= centralPark.subspots[0].y-15 ) {
-		centralPark.subspots[0].display();
+	if (mouseX <= mn.spots[0].x+15 && mouseX >= mn.spots[0].x-15 && mouseY <= mn.spots[0].y+15 && mouseY >= mn.spots[0].y-15 ) {
+		mn.spots[0].display();
+		currDepth=11;
+	}
+
+	//backbutton
+	if (mouseX <= 130  && mouseX >=30  && mouseY <= 60 && mouseY >= 20 ) {
+		triggerBackButton();
 	}
 
 	// if (scene == 1) {
@@ -187,12 +251,15 @@ function mouseClicked() {
 
 
 
-function grandView() { //show larrge map and hotspots (eventually trains too)
-	fill(100);
-	rect(12,45,22);
 
+
+function grandView() { //show larrge map and hotspots (eventually trains too)
+	console.log('drawing1');
+	currDepth=0;
 
 	image(water, 0, 0);	
+	// drawBackButton();
+
 	// drawText(brooklyn,brooklynText);
 	// drawText(manhattan,brooklynText);
 	// drawText(queens,brooklynText);
@@ -210,8 +277,12 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 		ellipseMode(CENTER);
 		ellipse(hotspots[h].x, hotspots[h].y, spotRadius, spotRadius);
 	}
+
+	//display sound collection 
+
 	// console.log(mouseX,mouseY);
 }
+
 
 //views:
 //grand
@@ -271,15 +342,52 @@ function drawText(img,textArr) {
 
 
 
-let centralPark = new Hotspot("Central Park", 505, 273);
-centralPark.addSubspot(500, 443); //Subspot(locX,locY,image,sound,name))
-centralPark.addSubspot(445, 507);
-centralPark.addSubspot(470, 563);
+/////////BACK BUTTON FUNCTIONS//////////
+function drawBackButton() {
+	rect(30, 20, 100, 40, 20);
+	textSize(32);
+	fill(0, 102, 153);
+	text('Back', 45, 43);
+}
+
+//when back button is clicked, user moves to previous screen based on currDepth
+//currDepth = 0 ----> now on homepage
+//currDepth = 1 ----> now on Brooklyn view
+////////currDepth = 11 ----> now on pic 1 of Brooklyn
+////////currDepth = 12 ----> now on pic 2 of Brooklyn
+////////currDepth = 13 ----> now on pic 3 of Brooklyn
+//currDepth = 2 ----> now on Manhattan view
+//////currDepth = 21 ----> now on pic 1 of Manhattan
+//////currDepth = 22 ----> now on pic 2 of Manhattan
+//////currDepth = 23 ----> now on pic 3 of Manhattan
+//currDepth = 3 ----> now on Queens view
+//currDepth = 4 ----> now on Bronx view
+//currDepth = 5 ----> now on Staten Island view
+function triggerBackButton() {
+	if (currDepth >= 1 && currDepth <= 5 ) { //viewing a specific borough
+		currDepth == 0;
+		grandView(); //back to homepage
+	} 
+	else{//viewing a specific pic in a borough
+		
+		console.log(Math.floor(currDepth/=10));
+		currDepth = Math.floor(currDepth/10)+1;
+		boroughs[currDepth].display(); //back to specific borough page
+	}
+}
+
+function reviewTrip() {}
+
+
+let mn = new Borough("Manhattan", 505, 273);
+mn.addSpot(500, 443); //Subspot(locX,locY,image,sound,name))
+mn.addSpot(445, 507);
+mn.addSpot(470, 563);
 // let testSub = new Subspot(505,273,cp1);
 
-hotspots.push(centralPark);
-hotspots.push(new Hotspot("Prospect Park", 505, 505));
-hotspots.push(new Hotspot("Flushing Meadows", 663, 374));
+boroughs.push(mn);
+boroughs.push(new Borough("Brooklyn", 505, 505));
+boroughs.push(new Borough("Queens", 663, 374));
 
 
 //Things to look at
