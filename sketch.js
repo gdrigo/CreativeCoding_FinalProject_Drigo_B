@@ -5,9 +5,6 @@
 //large view of map
 //text to image
 //zoom when mouse over certain area
-// function zoom(hotspotCode){ zooms into clicked hotspot on map
-	//call hotspot 
-// }
 
 // function hotspotClicked() {
 	//train animation
@@ -16,26 +13,19 @@
 // 	//show other subhotspot options
 // }
 
-//source slang
 
 let boroughs = []; //name, subhotspots[], location
 let hotspots = []; //name, subhotspots[], location
-let soundBag = [];
+// let soundJournal = new SoundJournal();
 
 let brooklynText = 'BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYNBROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN  BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN';
 let manhattanText = 'MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN'; 
-// let queensText = 'QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS';
-// let bronxText = 'BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX';
-// let statenIslandText = 'STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND';
+let queensText = 'QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS';
+let bronxText = 'BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX';
+let statenIslandText = 'STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND';
 
-let fontSizeMax = 20;
-let fontSizeMin = 10;
-let spacing = 12; // line height
-let kerning = 0.5; // between letters
 
 let spotRadius = 25;
-
-let scaleBy = 1.5;
 
 let currDepth = 0; //intiailized at zero, which means that user starts on homepage
 let boroughNum = 1; //used to identify boroughs. increases by 1 each time a new borough is created
@@ -70,24 +60,22 @@ function setup() {
 	createCanvas(913,843);
   	background(0,0,0);
   	// pixelDensity(1);
-  	textFont('Times');
+  	textFont('Helvetica');
 	textSize(10);
 	textAlign(LEFT, CENTER);
 }
 
 function draw() {
 	// console.log("in draw");
-	// // scale(scaleBy);
-	// background(0);
-	// // translate(-centralPark.x/2, -centralPark.y/2);
 	grandView(); //start at homepage
+
 	// console.log(mouseX,mouseY);
 	noLoop();
 }
 
 class Spot { //
 
-	constructor(depth, locX,locY,image,sound="",name="") {
+	constructor(depth, locX,locY,name="",image="",sound="") {
 		this.name = name;
 		this.x = locX;
 		this.y = locY;
@@ -100,6 +88,7 @@ class Spot { //
 		//show image filled with text (use videos??)
 		// drawText(cp1, brooklynText);
 		image(cp1, 0, 0, width, height);
+		soundJournal.display();
 		drawBackButton();
 		//play sound. can add sound to collection by click
 	}
@@ -124,96 +113,41 @@ class Borough {
 
 	display() { //borough view. Shows zoomed in version of borough and its hotspots 
 		//iterate through subspot array, placing a faded circle at each location
-
+		// console.log("displayingB");
   		image(water, 0, 0); //baackground
   		image(cpZoom, 0, 0); //zoomed in image
   		drawBackButton();
   		// drawText(cpZoom,brooklynText);
 
+  		soundJournal.display();
+
   		//show spots
   		let s;
   		for (s in this.spots) {
 			fill(255,255,255);
-			ellipseMode(CENTER);
-			ellipse(this.spots[s].x, this.spots[s].y, spotRadius, spotRadius);
-			console.log("yepThissaSpot");
+			// ellipseMode(CENTER);
+			rectMode(CENTER);
+			rect(this.spots[s].x, this.spots[s].y, 100, 40, 20);
+			textSize(20);
+			textAlign(CENTER);
+			fill(0, 102, 153);
+			text(this.spots[s].name, this.spots[s].x, this.spots[s].y);
+			// ellipse(this.spots[s].x, this.spots[s].y, spotRadius, spotRadius);
+			// console.log("yepThissaSpot");
 		}
 
-		//show subspots
 		// noLoop();
 	}
 
 
-	// addSpot(locX,locY,image="",sounds=[],name="") {
-	// 	this.spots.push(new Spot(locX,locY,image,sound,name));
-	// }
 	//creates and adds a new Spot to this.spots. 
-	addSpot(locX,locY,image="",sound="",name="") {
+	addSpot(locX,locY,name="Mystery Spot",image="",sound="") {
 		let spotDepth = (this.boroughNum*10)+this.spots.length+1; //used to update currDepth when user viewing it 
-		this.spots.push(new Spot(spotDepth,locX,locY,image,sound,name));
+		this.spots.push(new Spot(spotDepth,locX,locY,name,image,sound));
 	}
 
 }
  
-// class Hotspot { //cluster of Subspots
-// 	constructor(name,locX,locY,subspots=[]) {
-// 		// this.radius = (setNum);//actually dont need this. will be in display
-// 		this.name = name;
-// 		this.x = locX;
-// 		this.y = locY;
-// 		this.subspots = subspots;
-// 		// this.sound = sdlkj; not sure if including this 
-// 	}
-
-// 	// display() { //shows all subhotspots
-
-// 	// 	//fading circle at this.x,this.y ACTUALLY NO. MANAGE THAT IN A GLOBAL DISPLAY FUNC FOR GENRAL SCENE
-// 	// }
-
-// 	display() { //zooms in and shows subspots
-// 		//iterate through subspot array, placing a faded circle at each location
-
-// 		//zoom in
-
-		
-// 		// translate(this.x, this.y);
-//   		// scale(scaleBy);
-//   		// translate(-mx, -my);
-
-//   		// translate();
-//   		// console.log("zooming in");
-//   		image(water, 0, 0);
-//   		image(cpZoom, 0, 0);
-//   		// drawText(cpZoom,brooklynText);
-
-//   		//show subspots
-//   		let s;
-//   		for (s in this.subspots) {
-// 			fill(255,255,255);
-// 			ellipseMode(CENTER);
-// 			ellipse(this.subspots[s].x, this.subspots[s].y, spotRadius, spotRadius);
-// 			console.log("yep");
-// 		}
-
-
-// 		//show subspots
-// 		// noLoop();
-
-// 	}
-
-// 	addSubspot(locX,locY,image="",sound="",name="") {
-// 		this.subspots.push(new Subspot(locX,locY,image,sound,name));
-// 	}
-
-// 	// this.clicked = function() {
-// 	// 	if(mouseX <= this.x+15 && mouseX >= this.x-15 && mouseY <= this.y+15 && mouseY >= this.y-15 ) {
-
-// 	// 	}
-// 	// }
-
-
-// }
-
 
 function mouseClicked() {
 	//check mouse position. if on hotspot, trigger its scene
@@ -233,44 +167,27 @@ function mouseClicked() {
 	if (mouseX <= 130  && mouseX >=30  && mouseY <= 60 && mouseY >= 20 ) {
 		triggerBackButton();
 	}
-
-	// if (scene == 1) {
-	// 	grillGlows.push(new GrillGlow);
-
-	// 	if (grillGlows.length >= 15){
-	// 		scene = 2;
-	// 		//call staticy effect
-	// 		// for(let i == 0; i < 500; i++) {
-	// 		// 	// for ()
-	// 		// }
-	// 	}
-	// }
-	
-
 }
 
 
-
-
-
 function grandView() { //show larrge map and hotspots (eventually trains too)
-	console.log('drawing1');
 	currDepth=0;
 
 	image(water, 0, 0);	
-	// drawBackButton();
 
-	// drawText(brooklyn,brooklynText);
-	// drawText(manhattan,brooklynText);
-	// drawText(queens,brooklynText);
-	// drawText(bronx,brooklynText);
-	// drawText(statenisland ,brooklynText);
+	soundJournal.display();
 
-	image(brooklyn, 0, 0);
-	image(manhattan, 0, 0);
-	image(queens, 0, 0);
-	image(bronx, 0, 0);
-	image(statenisland,0,0);
+	drawText(brooklyn,brooklynText);
+	drawText(manhattan,manhattanText);
+	drawText(queens,queensText);
+	drawText(bronx,bronxText);
+	drawText(statenisland ,statenIslandText);
+
+	// image(brooklyn, 0, 0);
+	// image(manhattan, 0, 0);
+	// image(queens, 0, 0);
+	// image(bronx, 0, 0);
+	// image(statenisland,0,0);
 
 	for (h in hotspots) {
 		fill(255,255,255);
@@ -278,18 +195,91 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 		ellipse(hotspots[h].x, hotspots[h].y, spotRadius, spotRadius);
 	}
 
-	//display sound collection 
+	//display sound journal 
 
 	// console.log(mouseX,mouseY);
 }
 
 
-//views:
-//grand
-//hotpsot
-//subspot
+//holds all of the sounds collected (or made) by user
+class SoundJournal {
+	constructor() {
+		this.soundCollection = [];
+		this.nowPlaying = false;
+	}
+
+	display() {//draws sound journal based on how many sounds have been collected
+		
+		rectMode(CORNER);
+
+		//heading of panel
+		fill(255,255,255);
+		rect(30, 80, 300, 40, 20, 20, 0, 0); 
+		textSize(28);
+		textAlign(CENTER);
+		fill(0, 102, 153);
+		text('Sound Journal', 180, 102);
+
+		//main area
+		fill(255,255,255);
+		let heightFactor; //determined how tall the panel will be based on num sounds in journal
+		if (this.soundCollection.length<=3) {
+			heightFactor = 1;
+		}
+		else if (this.soundCollection.length<=6) {
+			heightFactor = 2;
+		}
+		else {
+			heightFactor = 3;
+		}
+		// console.log(heightFactor);
+		rect(30, 120, 300, 80*heightFactor); 
+		// textSize(32);
+		// textAlign(CENTER);
+		// fill(0, 102, 153);
+		// text('Back', 80, 43);
+
+
+		//display sounds
+
+
+		//pause/play button
+		fill(255,255,255);
+		rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
+		textSize(24);
+		textAlign(CENTER);
+		fill(0, 102, 153);
+		if (!this.nowPlaying) {
+			text('Play', 140, 140+80*heightFactor);
+		}
+		else {
+			text('Pause', 140, 220);
+		}
+
+
+		//clear button
+		fill(255,255,255);
+		rect(230, 120+80*heightFactor, 100, 40, 0,0,20,0); 
+		textAlign(CENTER);
+		fill(0, 102, 153);
+		text('Clear', 280, 140+80*heightFactor);
+
+	}
+
+	playSounds() { //plays all sounds in journal chronologically (maybe make an animation)
+
+	}
+
+	//removeSound() { //removes dragged sound from journal }
+}
+
 
 //move between stations
+
+let fontSizeMax = 20;
+let fontSizeMin = 10;
+let spacing = 12; // line height
+let kerning = 0.5; // between letters
 
 function drawText(img,textArr) {
 	var x = 0;
@@ -312,7 +302,6 @@ function drawText(img,textArr) {
 	    fontSize = max(fontSize, 1);
 	    textSize(fontSize);
 	    fill(c);
-
 
 	    var letter = textArr.charAt(counter);
 	    text(letter, 0, 0);
@@ -344,10 +333,13 @@ function drawText(img,textArr) {
 
 /////////BACK BUTTON FUNCTIONS//////////
 function drawBackButton() {
+	fill(255,255,255);
+	rectMode(CORNER);
 	rect(30, 20, 100, 40, 20);
-	textSize(32);
+	textSize(24);
+	textAlign(CENTER);
 	fill(0, 102, 153);
-	text('Back', 45, 43);
+	text('Back', 80, 40);
 }
 
 //when back button is clicked, user moves to previous screen based on currDepth
@@ -368,27 +360,31 @@ function triggerBackButton() {
 		currDepth == 0;
 		grandView(); //back to homepage
 	} 
-	else{//viewing a specific pic in a borough
+	else if (currDepth > 5){//viewing a specific pic in a borough
 		
 		console.log(Math.floor(currDepth/=10));
 		currDepth = Math.floor(currDepth/10)+1;
 		boroughs[currDepth].display(); //back to specific borough page
 	}
+
 }
 
 function reviewTrip() {}
 
 
+let soundJournal = new SoundJournal();
+
 let mn = new Borough("Manhattan", 505, 273);
-mn.addSpot(500, 443); //Subspot(locX,locY,image,sound,name))
-mn.addSpot(445, 507);
-mn.addSpot(470, 563);
+mn.addSpot(500, 443, "Central Pk"); //Subspot(locX,locY,image,sound,name))
+mn.addSpot(445, 507, "Times Sq");
+mn.addSpot(470, 563, "WTC");
 // let testSub = new Subspot(505,273,cp1);
 
 boroughs.push(mn);
 boroughs.push(new Borough("Brooklyn", 505, 505));
 boroughs.push(new Borough("Queens", 663, 374));
 
+// constructor(depth, locX,locY,image,sound="",name="")
 
 //Things to look at
 //https://editor.p5js.org/J-Cake/sketches/1r1wmWO60 
