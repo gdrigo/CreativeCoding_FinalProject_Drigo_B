@@ -320,7 +320,7 @@ function mouseClicked() {
 		if (currDepth == boroughs[b].boroughNum) { ////if currDepth matches borough code check spots. (we only look at the borough that's currently open)
 			for (s in boroughs[b].spots) {
 				//if currDepth matches borough code check spots 
-				if (mouseX <= boroughs[b].spots[s].x+15 && mouseX >= boroughs[b].spots[s].x-15 && mouseY <= boroughs[b].spots[s].y+15 && mouseY >= boroughs[b].spots[s].y-15) {
+				if (mouseX <= boroughs[b].spots[s].x+100 && mouseX >= boroughs[b].spots[s].x-100 && mouseY <= boroughs[b].spots[s].y+30 && mouseY >= boroughs[b].spots[s].y-30) {
 					// drawText(ctrlPkP,manhattanText);
 					currDepth=boroughs[b].spots[s].depth;
 					boroughs[b].spots[s].display();
@@ -336,6 +336,7 @@ function mouseClicked() {
 		if (mouseX <= 130  && mouseX >=30  && mouseY <= 60 && mouseY >= 20 ) {
 			triggerBackButton();
 		}
+
 	}
 
 	//journal play button
@@ -487,8 +488,12 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 	else {
 		image(brooklyn, 0, 0);
 	}
+	fill(0,0,0,255);
+	ellipse(535, 540, 36,36);
+	fill(255,50,50,255);
+	ellipse(535, 540, 27,27); //brooklyn click target area
 	fill(255,255,255,255);
-	ellipse(535, 540, 33,33); //brooklyn click target area
+	ellipse(535, 540, 15,15);
 	fill(255,255,255,0);
 
 
@@ -503,8 +508,12 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 	else {
 		image(manhattan, 0, 0);
 	}
+	fill(0,0,0,255);
+	ellipse(480, 330, 36,36);
+	fill(255,50,50,255);
+	ellipse(480, 330, 27,27); //manhattan click target area
 	fill(255,255,255,255);
-	ellipse(480, 330, 33,33); //manhattan click target area
+	ellipse(480, 330, 15,15);
 	fill(255,255,255,0);
 
 	ellipse(750, 380, 270,270); //queens's area
@@ -516,8 +525,12 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 	else {
 		image(queens, 0, 0);
 	}
+	fill(0,0,0,255);
+	ellipse(730, 370, 36,36);
+	fill(255,50,50,255);
+	ellipse(730, 370, 27,27); //queens click target area
 	fill(255,255,255,255);
-	ellipse(730, 370, 33,33); //queens click target area
+	ellipse(730, 370, 15,15);
 	fill(255,255,255,0);
 
 	ellipse(670, 140, 190,190); //bronx's area  
@@ -527,8 +540,12 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 	else {
 		image(bronx, 0, 0);
 	}
+	fill(0,0,0,255);
+	ellipse(650, 170, 36,36);
+	fill(255,50,50,255);
+	ellipse(650, 170, 27,27); //bronx click target area
 	fill(255,255,255,255);
-	ellipse(650, 170, 33,33); //bronx click target area
+	ellipse(650, 170, 15,15);
 	fill(255,255,255,0);
 
 	ellipse(225, 650, 360,360); //staten island's area  
@@ -538,8 +555,13 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 	else {
 		image(statenisland, 0, 0);
 	}
+
+	fill(0,0,0,255);
+	ellipse(290, 540, 36,36);
+	fill(255,50,50,255);
+	ellipse(290, 540, 27,27); //staten island click target area
 	fill(255,255,255,255);
-	ellipse(290, 540, 33,33); //staten island click target area
+	ellipse(290, 540, 15,15);
 	fill(255,255,255,0);
 
 	stroke(4);
@@ -800,6 +822,33 @@ function drawBackButton() {
 //currDepth = 4 ----> now on Bronx view
 //currDepth = 5 ----> now on Staten Island view
 function triggerBackButton() {
+	if(currDepth == 11) {
+		// image(ctrlPkP, 0, 0, width, height);
+		// drawText(ctrlPkP,manhattanText);
+		ctrlPkS.stop();
+	}
+	else if(currDepth == 12) {
+		broadwayS.stop();
+	}
+	else if(currDepth == 21) {
+		bridgeS.stop();
+	}
+	else if(currDepth == 22) {
+		carnivalS.stop();
+	}
+	else if(currDepth == 31) {
+		tennisS.stop();
+	}
+	else if(currDepth == 32) {
+		airportS.stop();
+	}
+	else if(currDepth == 41) {
+		zooS.stop();
+	}
+	else if(currDepth == 51) {
+		ferryS.stop();
+	}
+
 	if (currDepth >= 1 && currDepth <= 5 ) { //viewing a specific borough
 		currDepth == 0;
 		grandView(); //back to homepage
@@ -809,8 +858,35 @@ function triggerBackButton() {
 		currDepth = parseInt(currDepth.toString()[0]);
 		// currDepth = Math.floor(currDepth/10);
 		// console.log("cD" +currDepth);
-		boroughs[currDepth].display(); //back to specific borough page
+		boroughs[currDepth-1].display(); //back to specific borough page
 	}
+
+	// if(currDepth == 11) {
+	// 	// image(ctrlPkP, 0, 0, width, height);
+	// 	// drawText(ctrlPkP,manhattanText);
+	// 	ctrlPkS.stop();
+	// }
+	// else if(currDepth == 12) {
+	// 	broadwayS.stop();
+	// }
+	// else if(currDepth == 21) {
+	// 	bridgeS.stop();
+	// }
+	// else if(currDepth == 22) {
+	// 	carnivalS.stop();
+	// }
+	// else if(currDepth == 31) {
+	// 	tennisS.stop();
+	// }
+	// else if(currDepth == 32) {
+	// 	airportS.stop();
+	// }
+	// else if(currDepth == 41) {
+	// 	zooS.stop();
+	// }
+	// else if(currDepth == 51) {
+	// 	ferryS.stop();
+	// }
 
 
 	//stop sound if playing
