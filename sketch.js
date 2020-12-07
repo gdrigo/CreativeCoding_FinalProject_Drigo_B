@@ -125,45 +125,45 @@ class Spot { //
 		// background(0);
 		// tint(0,255);
 		// image(ctrlPkP, 0, 0, width, height);
-
+		background(20);	
 		if(currDepth == 11) {
-			image(ctrlPkP, 0, 0, width, height);
+			// image(ctrlPkP, 0, 0, width, height);
 			drawText(ctrlPkP,manhattanText);
 			ctrlPkS.play();
 		}
 		else if(currDepth == 12) {
-			background(0);
-			image(broadwayP, 0, 0, width, height);
+			// background(0);
+			// image(broadwayP, 0, 0, width, height);
 			drawText(broadwayP,manhattanText);
 			broadwayS.play();
 		}
 		else if(currDepth == 21) {
-			image(bridgeP, 0, 0, width, height);
+			// image(bridgeP, 0, 0, width, height);
 			drawText(bridgeP,brooklynText);
 			bridgeS.play();
 		}
 		else if(currDepth == 22) {
-			image(carnivalP, 0, 0, width, height);
+			// image(carnivalP, 0, 0, width, height);
 			drawText(carnivalP,brooklynText);
 			carnivalS.play();
 		}
 		else if(currDepth == 31) {
-			image(tennisP, 0, 0, width, height);
+			// image(tennisP, 0, 0, width, height);
 			drawText(tennisP,queensText);
 			tennisS.play();
 		}
 		else if(currDepth == 32) {
-			image(airportP, 0, 0, width, height);
+			// image(airportP, 0, 0, width, height);
 			drawText(airportP,queensText);
 			airportS.play();
 		}
 		else if(currDepth == 41) {
-			image(zooP, 0, 0, width, height);
+			// image(zooP, 0, 0, width, height);
 			drawText(zooP,bronxText);
 			zooS.play();
 		}
 		else if(currDepth == 51) {
-			image(ferryP, 0, 0, width, height);
+			// image(ferryP, 0, 0, width, height);
 			drawText(ferryP,statenIslandText);
 			ferryS.play();
 		}
@@ -229,6 +229,7 @@ class Borough {
   		drawBackButton();
   		// drawText(cpZoom,brooklynText);
   		if(currDepth == 1) {//manhattan
+			// image(mZoom, 0, 0, width, height);
 			image(mZoom, 0, 0, width, height);
 			// drawText(ctrlPkP,manhattanText);
 		}
@@ -607,7 +608,7 @@ function drawAlbum(){
 	rect(30, 120, 266, 200, 0);
 	textSize(18); 
 	fill(0,0,0);
-	text('Empty! \nTravel around', 170, 220);
+	text('Your album is empty. \nGo explore!', 170, 220);
 
 	//prevPhoto button
 	fill(255,255,255);
@@ -742,10 +743,10 @@ class SoundJournal {
 
 //move between stations
 
-let fontSizeMax = 20; //20
-let fontSizeMin = 10; //10
-let spacing = 12; // line height
-let kerning = 0.5; // between letters
+let fontSizeMax = 10; //20
+let fontSizeMin = 1; //10
+let spacing = 3; // line height
+let kerning = 3; // between letters
 
 function drawText(img,textArr) {
 	var x = 0;
