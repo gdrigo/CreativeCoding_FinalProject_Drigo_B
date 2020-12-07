@@ -41,9 +41,11 @@ let bronx;
 let statenisland;
 let water;
 
-let soundC = [];
+let soundCollection = []; //holds all sounds added to collection by user
+let photoAlbum = [];
 
-let testSound;
+
+// let cameraSound;
 
 function preload() {
 
@@ -62,7 +64,7 @@ function preload() {
 
 	bkZoom = loadImage("assets/bkZoom.png");
 	bridgeP = loadImage("assets/bridge.jpg"); bridgeS = loadSound('assets/sounds/traffic.mp3');
-	carnivalP = loadImage("assets/centralPark.jpg"); carnivalS = loadSound('assets/sounds/traffic.mp3');
+	carnivalP = loadImage("assets/carnival.jpg"); carnivalS = loadSound('assets/sounds/carnival.mp3');
 
 	mZoom = loadImage("assets/mZoom.png");
 	ctrlPkP = loadImage("assets/centralPark.jpg"); ctrlPkS = loadSound('assets/sounds/centralpark.mp3');
@@ -77,6 +79,8 @@ function preload() {
 
 	siZoom = loadImage("assets/siZoom.png");
 	ferryP = loadImage("assets/ferry.jpg"); ferryS = loadSound('assets/sounds/boat.mp3');
+
+	cameraSound = loadSound("assets/sounds/camera.mp3")
 
 
 	// testSound = loadSound('assets/testSound.mp3');
@@ -100,7 +104,7 @@ function draw() {
 	}
 	
 
-	console.log(mouseX,mouseY);
+	// console.log(mouseX,mouseY);
 	// noLoop();
 }
 
@@ -111,7 +115,7 @@ class Spot { //
 		this.x = locX;
 		this.y = locY;
 		this.img = image;
-		this.sound = testSound;
+		// this.sound = testSound;
 		this.depth = depth;
 	}
 
@@ -164,9 +168,6 @@ class Spot { //
 			ferryS.play();
 		}
 
-
-
-
 		// if (testSound.isPlaying()) {
 	 //    // .isPlaying() returns a boolean
 	 //    testSound.stop();
@@ -176,20 +177,25 @@ class Spot { //
 		
 		// drawText(ctrlPkP,manhattanText);
 		
-		soundJournal.display();
+		// soundJournal.display();
+		drawAlbum();
 		drawBackButton();
 
-
-		fill(255,255,255,100);
+		//add button
+		fill(0,0,0,255);
 		rectMode(CENTER);
-		rect(650, 770, 90,50, 30,30,30,30);
+		rect(450, 740, 160,100, 50,50,50,50);
 		rectMode(CORNER);
+		fill(255,255,255);
+		text('Take Photo', 450, 740);
+
+		//playbutton
 
 		//prev button
-		ellipse(755, 770, 50,50);
+		// ellipse(755, 50, 50,50);
 
 		//next button
-		ellipse(820, 770, 50,50);
+		// ellipse(820, 50, 50,50);
 
 
 
@@ -228,8 +234,8 @@ class Borough {
 		}
 		else if(currDepth == 2) {//brooklyn
 			image(bkZoom, 0, 0, width, height);
-			fill(255,255,255,255);
-			ellipse(555, 570, 50,50);
+			// fill(255,255,255,255);
+			// ellipse(555, 570, 50,50);
 			// drawText(broadwayP,manhattanText);
 		}
 		else if(currDepth == 3) {//queens
@@ -245,7 +251,8 @@ class Borough {
 		}
 
 
-  		soundJournal.display();
+  		// soundJournal.display();
+  		drawAlbum();
 
   		//show spots
   		let s;
@@ -254,10 +261,10 @@ class Borough {
 			fill(255,255,255);
 			// ellipseMode(CENTER);
 			rectMode(CENTER);
-			rect(this.spots[s].x, this.spots[s].y, 100, 40, 20);
+			rect(this.spots[s].x, this.spots[s].y, 200, 40, 20);
 			textSize(20);
 			textAlign(CENTER);
-			fill(0, 102, 153);
+			fill(0,0,0);
 			text(this.spots[s].name, this.spots[s].x, this.spots[s].y);
 			// ellipse(this.spots[s].x, this.spots[s].y, spotRadius, spotRadius);
 			// console.log("yepThissaSpot");
@@ -324,20 +331,116 @@ function mouseClicked() {
 	}
 		
 
-	// if (mouseX <= mn.spots[0].x+15 && mouseX >= mn.spots[0].x-15 && mouseY <= mn.spots[0].y+15 && mouseY >= mn.spots[0].y-15 ) {
-	// 	// drawText(cp1,manhattanText);
-	// 	mn.spots[0].display();
-	// 	// currDepth=11;
-	// 	currDepth=mn.spots[0].depth;
-		
-	// }
-
 	//backbutton
 	if (currDepth != 0) { //if not on homepage
 		if (mouseX <= 130  && mouseX >=30  && mouseY <= 60 && mouseY >= 20 ) {
 			triggerBackButton();
 		}
 	}
+
+	//journal play button
+	if (mouseX <= 230  && mouseX >=30  && mouseY <= 120+80*heightFactor+40 && mouseY >= 120+80*heightFactor ) {
+		// rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
+		for (let i =0; i < soundCollection.length; i++) {
+			soundCollection[i].play();
+		}
+		// console.log("play");
+	}
+
+	//journal erase button
+	if (mouseX <= 330  && mouseX >=230  && mouseY <= 120+80*heightFactor+40 && mouseY >= 120+80*heightFactor ) {
+		// rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
+		soundCollection = [];
+		// console.log("erase");
+	}
+
+	//add sound of scene to journal
+	// if(currDepth > 5){ //only called if in a spot scene
+	// 	if (mouseX <= 450+160  && mouseX >= 375  && mouseY <= 740+100 && mouseY >= 680 ) {
+	// 		// rect(450, 740, 160,100, 50,50,50,50); 
+	// 		if(currDepth == 11) {
+	// 			// image(ctrlPkP, 0, 0, width, height);
+	// 			// drawText(ctrlPkP,manhattanText);
+	// 			soundCollection.push(ctrlPkS);
+	// 		}
+	// 		else if(currDepth == 12) {
+	// 			soundCollection.push(broadwayS);
+	// 		}
+	// 		else if(currDepth == 21) {
+	// 			soundCollection.push(bridgeS);
+	// 		}
+	// 		else if(currDepth == 22) {
+	// 			soundCollection.push(carnivalS);
+	// 		}
+	// 		else if(currDepth == 31) {
+	// 			soundCollection.push(tennisS);
+	// 		}
+	// 		else if(currDepth == 32) {
+	// 			soundCollection.push(airportS);
+	// 		}
+	// 		else if(currDepth == 41) {
+	// 			soundCollection.push(zooS);
+	// 		}
+	// 		else if(currDepth == 51) {
+	// 			soundCollection.push(ferryS);
+	// 		}
+	// 		console.log("added");
+	// 	}
+	// }
+
+	//take picture and add it to album
+	if(currDepth > 5){ //only called if in a spot scene
+		if (mouseX <= 450+160  && mouseX >= 375  && mouseY <= 740+100 && mouseY >= 680 ) {
+			// rect(450, 740, 160,100, 50,50,50,50); 
+			if(currDepth == 11) {
+				// image(ctrlPkP, 0, 0, width, height);
+				// drawText(ctrlPkP,manhattanText);
+				photoAlbum.push(ctrlPkP);
+			}
+			else if(currDepth == 12) {
+				photoAlbum.push(broadwayP);
+			}
+			else if(currDepth == 21) {
+				photoAlbum.push(bridgeP);
+			}
+			else if(currDepth == 22) {
+				photoAlbum.push(carnivalP);
+			}
+			else if(currDepth == 31) {
+				photoAlbum.push(tennisP);
+			}
+			else if(currDepth == 32) {
+				photoAlbum.push(airportP);
+			}
+			else if(currDepth == 41) {
+				photoAlbum.push(zooP);
+			}
+			else if(currDepth == 51) {
+				photoAlbum.push(ferryP);
+			}
+			cameraSound.play();
+			albumNext();
+			console.log("added");
+		}
+	}
+
+
+	//album prev 
+	// rect(30, 320, 133, 40); 
+	if (mouseX <= 30+133-1  && mouseX >= 30  && mouseY <= 320+40 && mouseY >= 320 ) {
+		albumPrev();
+	}
+
+	//album next
+	// rect(163, 320, 133, 40); 
+	if (mouseX <= 163+133-1  && mouseX >= 163  && mouseY <= 320+40 && mouseY >= 320 ) {
+		albumPrev();
+	}
+
+
+
+	
+
 
 	// if (testSound.isPlaying()) {
  //    // .isPlaying() returns a boolean
@@ -360,31 +463,6 @@ class BoroughArea { //basically an ellipse that marks the area of a borough. Use
 	// }
 }
 
-// let manhattanArea = [];
-// manhattanArea.push(new BoroughArea(570,110,30));
-// 	manhattanArea.push(new BoroughArea(560,130,30));
-// 	manhattanArea.push(new BoroughArea(550,150,30));
-// 	manhattanArea.push(new BoroughArea(540,170,30));
-
-// 	manhattanArea.push(new BoroughArea(530,200,40));
-// 	manhattanArea.push(new BoroughArea(530,255,80));
-// 	manhattanArea.push(new BoroughArea(500,300,80));
-// 	manhattanArea.push(new BoroughArea(470,350,80));
-// 	manhattanArea.push(new BoroughArea(460,390,70));
-// 	manhattanArea.push(new BoroughArea(433,452,25));
-
-	// function testMan () {
-	// 	for (i in manhattanArea) {
-	// 		if(dist(mouseX,mouseY,manhattanArea[i].x,manhattanArea[i].y) < manhattanArea[i].y/2) {
-	// 			drawText(manhattan,manhattanText);
-	// 			break;
-	// 		}
-	// 		else {
-	// 			image(manhattan, 0, 0);
-	// 		}
-	// 	}
-
-	// }
 
 function playSound(spotName) {}
 function stopSound(spotName) {}
@@ -393,25 +471,10 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 	currDepth=0;
 
 	image(water, 0, 0);	
-	soundC.push(tennisS);
 
+	// soundJournal.display();
+	drawAlbum();
 
-	soundJournal.display();
-
-	// testSound.play();//central parrk
-
-
-	// drawText(brooklyn,brooklynText);
-	// drawText(manhattan,manhattanText);
-	// drawText(queens,queensText);
-	// drawText(bronx,bronxText);
-	// drawText(statenisland ,statenIslandText);
-
-	// image(brooklyn, 0, 0);
-	// image(manhattan, 0, 0);
-	// image(queens, 0, 0);
-	// image(bronx, 0, 0);
-	// image(statenisland,0,0);
 
 	noStroke();
 	fill(255,255,255,0);
@@ -481,16 +544,102 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 
 	stroke(4);
 
+
+
+	// photoAlbum.push(ctrlPkP);
+	// if (photoAlbum.length != 0) {//not empty
+	// 	image(photoAlbum[0], 31,121, 266, 200);
+	// }
+	
+
 	//display sound journal 
 
 	// console.log(mouseX,mouseY);
 }
 
+let currPhoto = 0;
+function drawAlbum(){
+	rectMode(CORNER);
 
+	//heading of panel
+	fill(0,0,0);
+	rect(30, 80, 266, 40, 20, 20, 0, 0); 
+	textSize(28);
+	textAlign(CENTER);
+	fill(255,255,255);
+	text('Album', 170, 102);
+
+	//main area
+	fill(255,255,255);
+	// let heightFactor; //determined how tall the panel will be based on num sounds in journal
+	if (soundCollection.length<=3) {
+		heightFactor = 1;
+	}
+	else if (soundCollection.length<=6) {
+		heightFactor = 2;
+	}
+	else {
+		heightFactor = 3;
+	}
+	// console.log(heightFactor);
+	rect(30, 120, 266, 200, 0);
+	textSize(18); 
+	fill(0,0,0);
+	text('Empty! \nTravel around', 170, 220);
+
+	//prevPhoto button
+	fill(255,255,255);
+	rect(30, 320, 133, 40, 0,0,0,20); 
+	textSize(24);
+	textAlign(CENTER);
+	fill(0,0,0);
+	text('Prev', 100, 342);
+
+	//nextPhoto button
+	fill(255,255,255);
+	rect(163, 320, 133, 40, 0,0,20,0); 
+	textSize(24);
+	textAlign(CENTER);
+	fill(0,0,0);
+	text('Next', 220, 342);
+
+	
+	//show currPhoto
+	if(photoAlbum.length!=0){
+		image(photoAlbum[currPhoto], 31,121, 266, 200);
+		// image(photoAlbum[currPhoto], 31,121, 266, 200);
+		// currPhoto++;
+		// if
+	}
+}
+
+function albumNext() { //functionality for album's next button. shows next photo in sequence
+	if(photoAlbum.length!=0){
+		// image(photoAlbum[currPhoto], 31,121, 266, 200);
+		currPhoto++;
+		if (currPhoto == photoAlbum.length) {
+			currPhoto = 0;
+		}
+	}
+	drawAlbum();
+}
+function albumPrev() { //functionality for album's prev button. shows prev photo in sequence
+	if(photoAlbum.length!=0){
+		// image(photoAlbum[currPhoto], 31,121, 266, 200);
+		currPhoto--;
+		if (currPhoto == -1) {
+			currPhoto = photoAlbum.length-1;
+		}
+	}
+	drawAlbum();
+}
+
+
+let heightFactor; //determined how tall the panel will be based on num sounds in journal
 //holds all of the sounds collected (or made) by user
 class SoundJournal {
 	constructor() {
-		this.soundCollection = [];
+		// this.soundCollection = [];
 		this.nowPlaying = false;
 	}
 
@@ -508,11 +657,11 @@ class SoundJournal {
 
 		//main area
 		fill(255,255,255);
-		let heightFactor; //determined how tall the panel will be based on num sounds in journal
-		if (this.soundCollection.length<=3) {
+		// let heightFactor; //determined how tall the panel will be based on num sounds in journal
+		if (soundCollection.length<=3) {
 			heightFactor = 1;
 		}
-		else if (this.soundCollection.length<=6) {
+		else if (soundCollection.length<=6) {
 			heightFactor = 2;
 		}
 		else {
@@ -543,7 +692,7 @@ class SoundJournal {
 		}
 
 
-		//clear button
+		//erase button
 		fill(255,255,255);
 		rect(230, 120+80*heightFactor, 100, 40, 0,0,20,0); 
 		textAlign(CENTER);
@@ -633,7 +782,7 @@ function drawBackButton() {
 	rect(30, 20, 100, 40, 20);
 	textSize(24);
 	textAlign(CENTER);
-	fill(0, 102, 153);
+	fill(0,0,0);
 	text('Back', 80, 40);
 }
 
@@ -657,21 +806,25 @@ function triggerBackButton() {
 	} 
 	else if (currDepth > 5){//viewing a specific pic in a borough
 		console.log(Math.floor(currDepth/=10));
-		currDepth = Math.floor(currDepth/10);
-		console.log("cD" +currDepth);
+		currDepth = parseInt(currDepth.toString()[0]);
+		// currDepth = Math.floor(currDepth/10);
+		// console.log("cD" +currDepth);
 		boroughs[currDepth].display(); //back to specific borough page
 	}
 
+
+	//stop sound if playing
+
 }
 
-function reviewTrip() {}
+// function reviewTrip() {}
 
 
 let soundJournal = new SoundJournal();
 
 let mn = new Borough("Manhattan", 480, 330);
 mn.addSpot(500, 443, "Central Pk"); //Spot(locX,locY,image,sound,name))
-mn.addSpot(445, 507, "Broadway");
+mn.addSpot(310, 707, "Broadway");
 boroughs.push(mn);
 // let testSub = new Subspot(505,273,cp1);
 
@@ -679,7 +832,6 @@ boroughs.push(mn);
 let bk = new Borough("Brooklyn", 535, 540);
 bk.addSpot(477, 141, "Bk Bridge"); //Spot(locX,locY,image,sound,name))
 bk.addSpot(600, 650, "Eastern Pkwy");
-
 boroughs.push(bk);
 
 let qu = new Borough("Queens", 720, 370);
@@ -687,7 +839,6 @@ qu.addSpot(570, 250, "US Open");//Spot(locX,locY,image,sound,name))
 qu.addSpot(640, 400, "JFK");
 boroughs.push(qu);
 
-// boroughs.push(new Borough("Queens", 730, 370));
 let bx = new Borough("Bronx", 650, 170);
 bx.addSpot(577, 500, "Bx Zoo"); //Spot(locX,locY,image,sound,name))
 boroughs.push(bx);
@@ -696,7 +847,6 @@ boroughs.push(bx);
 let si = new Borough("Staten Island", 290, 540);
 si.addSpot(760, 150, "SI Ferry"); //Spot(locX,locY,image,sound,name))
 boroughs.push(si);
-// boroughs.push(new Borough("Staten Island", 290, 540));
 
 // constructor(depth, locX,locY,image,sound="",name="")
 
