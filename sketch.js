@@ -2,6 +2,8 @@
 // Gregoire Drigo
 
 
+//Travel throughout NYC taking pictures for your album along the way
+
 //large view of map
 //text to image
 //zoom when mouse over certain area
@@ -19,11 +21,22 @@ let hotspots = []; //name, subhotspots[], location
 // let soundJournal = new SoundJournal();
 
 let brooklynText = 'BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYNBROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN  BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN BROOKLYN';
-let manhattanText = 'MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN'; 
-let queensText = 'QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS';
-let bronxText = 'BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX BRONX';
-let statenIslandText = 'STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND';
+let lbText = 'EVERY LABOR DAY, THE CARIBBEAN DIASPORA FROM THROUHGOUT THE US GATHER IN BROOKLYN TO CELEBRATE THEIR HERITAGE THROUGH FOOD, DANCE, PARADES, PARTIES, AND TRADITIONS SUCH AS JOUVERT.EVERY LABOR DAY, THE CARIBBEAN DIASPORA FROM THROUHGOUT THE US GATHER IN BROOKLYN TO CELEBRATE THEIR HERITAGE THROUGH FOOD, DANCE, PARADES, PARTIES, AND TRADITIONS SUCH AS JOUVERT.EVERY LABOR DAY, THE CARIBBEAN DIASPORA FROM THROUHGOUT THE US GATHER IN BROOKLYN TO CELEBRATE THEIR HERITAGE THROUGH FOOD, DANCE, PARADES, PARTIES, AND TRADITIONS SUCH AS JOUVERT.EVERY LABOR DAY, THE CARIBBEAN DIASPORA FROM THROUHGOUT THE US GATHER IN BROOKLYN TO CELEBRATE THEIR HERITAGE THROUGH FOOD, DANCE, PARADES, PARTIES, AND TRADITIONS SUCH AS JOUVERT.EVERY LABOR DAY, THE CARIBBEAN DIASPORA FROM THROUHGOUT THE US GATHER IN BROOKLYN TO CELEBRATE THEIR HERITAGE THROUGH FOOD, DANCE, PARADES, PARTIES, AND TRADITIONS SUCH AS JOUVERT.';
+let bkbgText = 'EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.EVERY YEAR AT THE END OF SUMMER MY BEST FRIENDS AND I WALK THE BROOKLYN BRIDGE.';
 
+let manhattanText = 'MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN MANHATTAN'; 
+let cpText = 'I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDS I LOVE BIKING WITH FRIENDSI LOVE BIKING WITH FRIENDS';
+let shText = 'I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!I LOVE EXPLORING SOHO. SO MANY COOL BUILDINGS, STORES, AND THE COBBLE STONE STREETS!';
+
+let queensText = 'QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS QUEENS';
+let airpText = 'THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.THE GATEWAY BACK HOME TO DOMINICA AND GUADELOUPE.';
+let tennisText = 'MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.MY MOM AND I GO TO THE US OPEN EVERY YEAR.';
+
+let bronxText = 'THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX THE BRONX';
+let zooText = 'A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.A PIC FROM THE FIRST TIME I TOOK MY COUSIN TO THE ZOO.';
+
+let statenIslandText = 'STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND STATEN ISLAND';
+let ferryText = 'NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.NOT A FAN OF THIS BOROUGH, BUT THE FERRY IS COOL I GUESS.';
 
 
 let spotRadius = 25;
@@ -43,6 +56,7 @@ let water;
 
 let soundCollection = []; //holds all sounds added to collection by user
 let photoAlbum = [];
+let collapseAlbum = true;
 
 
 // let cameraSound;
@@ -67,8 +81,8 @@ function preload() {
 	carnivalP = loadImage("assets/carnival.jpg"); carnivalS = loadSound('assets/sounds/carnival.mp3');
 
 	mZoom = loadImage("assets/mZoom.png");
-	ctrlPkP = loadImage("assets/centralPark.jpg"); ctrlPkS = loadSound('assets/sounds/centralpark.mp3');
-	broadwayP = loadImage("assets/broadway.jpg"); broadwayS = loadSound('assets/sounds/broadway.mp3');
+	ctrlPkP = loadImage("assets/cpBike.jpg"); ctrlPkS = loadSound('assets/sounds/centralpark.mp3');
+	sohoP = loadImage("assets/soho.jpg"); sohoS = loadSound('assets/sounds/soho.mp3');
 
 	qZoom = loadImage("assets/qZoom.png");
 	tennisP = loadImage("assets/tennis.jpg"); tennisS = loadSound('assets/sounds/tennis.mp3');
@@ -80,7 +94,10 @@ function preload() {
 	siZoom = loadImage("assets/siZoom.png");
 	ferryP = loadImage("assets/ferry.jpg"); ferryS = loadSound('assets/sounds/boat.mp3');
 
-	cameraSound = loadSound("assets/sounds/camera.mp3")
+	cameraSound = loadSound("assets/sounds/camera.mp3");
+
+	expandIcon = loadImage("assets/expand.png");
+	collapseIcon = loadImage("assets/collapse.png");
 
 
 	// testSound = loadSound('assets/testSound.mp3');
@@ -102,7 +119,6 @@ function draw() {
 	if (currDepth == 0) {
 		grandView(); //start at homepage
 	}
-	
 
 	// console.log(mouseX,mouseY);
 	// noLoop();
@@ -115,41 +131,38 @@ class Spot { //
 		this.x = locX;
 		this.y = locY;
 		this.img = image;
-		// this.sound = testSound;
 		this.depth = depth;
 	}
 
 	display() { //shows all subhotspots
 		//show image filled with text (use videos??)
-		// drawText(cp1, brooklynText);
-		// background(0);
-		// tint(0,255);
+		
 		// image(ctrlPkP, 0, 0, width, height);
 		background(20);	
 		if(currDepth == 11) {
 			// image(ctrlPkP, 0, 0, width, height);
-			drawText(ctrlPkP,manhattanText);
+			drawText(ctrlPkP,cpText);
 			ctrlPkS.play();
 		}
 		else if(currDepth == 12) {
 			// background(0);
-			// image(broadwayP, 0, 0, width, height);
-			drawText(broadwayP,manhattanText);
-			broadwayS.play();
+			// image(sohoP, 0, 0, width, height);
+			drawText(sohoP,shText);
+			sohoS.play();
 		}
 		else if(currDepth == 21) {
 			// image(bridgeP, 0, 0, width, height);
-			drawText(bridgeP,brooklynText);
+			drawText(bridgeP,bkbgText);
 			bridgeS.play();
 		}
 		else if(currDepth == 22) {
 			// image(carnivalP, 0, 0, width, height);
-			drawText(carnivalP,brooklynText);
+			drawText(carnivalP,lbText);
 			carnivalS.play();
 		}
 		else if(currDepth == 31) {
 			// image(tennisP, 0, 0, width, height);
-			drawText(tennisP,queensText);
+			drawText(tennisP,tennisText);
 			tennisS.play();
 		}
 		else if(currDepth == 32) {
@@ -159,37 +172,25 @@ class Spot { //
 		}
 		else if(currDepth == 41) {
 			// image(zooP, 0, 0, width, height);
-			drawText(zooP,bronxText);
+			drawText(zooP,zooText);
 			zooS.play();
 		}
 		else if(currDepth == 51) {
 			// image(ferryP, 0, 0, width, height);
-			drawText(ferryP,statenIslandText);
+			drawText(ferryP,ferryText);
 			ferryS.play();
 		}
 
-		// if (testSound.isPlaying()) {
-	 //    // .isPlaying() returns a boolean
-	 //    testSound.stop();
-	 //  } else {
-	    // testSound.play();
-	  // }
-		
-		// drawText(ctrlPkP,manhattanText);
-		
-		// soundJournal.display();
 		drawAlbum();
 		drawBackButton();
 
-		//add button
+		//Camera button
+		fill(255,255,255,255);
+		ellipse(450, 740, 90,90);
 		fill(0,0,0,255);
-		rectMode(CENTER);
-		rect(450, 740, 160,100, 50,50,50,50);
-		rectMode(CORNER);
-		fill(255,255,255);
-		text('Take Photo', 450, 740);
-
-		//playbutton
+		ellipse(450, 740, 70,70);
+		fill(255,255,255,255);
+		ellipse(450, 740, 63,63);
 
 		//prev button
 		// ellipse(755, 50, 50,50);
@@ -198,19 +199,12 @@ class Spot { //
 		// ellipse(820, 50, 50,50);
 
 
-
-
 		//play sound. can add sound to collection by click
 	}
 
 }
 
 class Borough {
-	// constructor(name, image, locX,locY, spots=[]){
-	// 	//name, image, area
-	// 	//hover
-	// 	//display
-	// }
 	constructor(name,locX,locY,spots=[]) {
 		// this.radius = (setNum);//actually dont need this. will be in display
 		this.name = name;
@@ -226,18 +220,16 @@ class Borough {
 		
   		image(water, 0, 0); //background
   		// image(mZoom, 0, 0); //zoomed in image
-  		drawBackButton();
+  		
   		// drawText(cpZoom,brooklynText);
   		if(currDepth == 1) {//manhattan
 			// image(mZoom, 0, 0, width, height);
 			image(mZoom, 0, 0, width, height);
+			// drawText(mZoom,manhattanText);
 			// drawText(ctrlPkP,manhattanText);
 		}
 		else if(currDepth == 2) {//brooklyn
 			image(bkZoom, 0, 0, width, height);
-			// fill(255,255,255,255);
-			// ellipse(555, 570, 50,50);
-			// drawText(broadwayP,manhattanText);
 		}
 		else if(currDepth == 3) {//queens
 			image(qZoom, 0, 0); //zoomed in image
@@ -253,6 +245,7 @@ class Borough {
 
 
   		// soundJournal.display();
+  		drawBackButton();
   		drawAlbum();
 
   		//show spots
@@ -288,12 +281,6 @@ class Borough {
 function mouseClicked() {
 	//check mouse position. if on hotspot, trigger its scene
 
-	// if (mouseX <= mn.x+15 && mouseX >= mn.x-15 && mouseY <= mn.y+15 && mouseY >= mn.y-15 ) {
-	// 	// drawText(manhattan, manhattanText);
-	// 	mn.display();
-	// 	currDepth=1;
-	// 	//add flag
-	// }
 	//checks if any of the boroughs are clicked
 	for (b in boroughs) {
 		if (mouseX <= boroughs[b].x+16 && mouseX >= boroughs[b].x-16 && mouseY <= boroughs[b].y+16 && mouseY >= boroughs[b].y-16) {
@@ -304,17 +291,6 @@ function mouseClicked() {
 			break;
 		}
 	}
-
-	// //checks if any spots are clicked. opens specified scene if so
-	// for (s in mn.spots) {
-	// 	//if currdepth matches borough code check spots 
-	// 	if (mouseX <= mn.spots[s].x+15 && mouseX >= mn.spots[s].x-15 && mouseY <= mn.spots[s].y+15 && mouseY >= mn.spots[s].y-15) {
-	// 		drawText(cp1,manhattanText);
-	// 		mn.spots[s].display();
-	// 		currDepth=mn.spots[0].depth;
-	// 	}
-	// }
-
 
 	//checks if any spots are clicked. opens specified scene if so
 	for (b in boroughs) {
@@ -330,31 +306,30 @@ function mouseClicked() {
 			break;
 		}
 	}
-		
-
+	
 	//backbutton
 	if (currDepth != 0) { //if not on homepage
-		if (mouseX <= 130  && mouseX >=30  && mouseY <= 60 && mouseY >= 20 ) {
+		if (mouseX <= 75  && mouseX >=20  && mouseY <= 70 && mouseY >= 20 ) {
 			triggerBackButton();
 		}
 
 	}
 
 	//journal play button
-	if (mouseX <= 230  && mouseX >=30  && mouseY <= 120+80*heightFactor+40 && mouseY >= 120+80*heightFactor ) {
-		// rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
-		for (let i =0; i < soundCollection.length; i++) {
-			soundCollection[i].play();
-		}
-		// console.log("play");
-	}
+	// if (mouseX <= 230  && mouseX >=30  && mouseY <= 120+80*heightFactor+40 && mouseY >= 120+80*heightFactor ) {
+	// 	// rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
+	// 	for (let i =0; i < soundCollection.length; i++) {
+	// 		soundCollection[i].play();
+	// 	}
+	// 	// console.log("play");
+	// }
 
 	//journal erase button
-	if (mouseX <= 330  && mouseX >=230  && mouseY <= 120+80*heightFactor+40 && mouseY >= 120+80*heightFactor ) {
-		// rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
-		soundCollection = [];
-		// console.log("erase");
-	}
+	// if (mouseX <= 330  && mouseX >=230  && mouseY <= 120+80*heightFactor+40 && mouseY >= 120+80*heightFactor ) {
+	// 	// rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
+	// 	soundCollection = [];
+	// 	// console.log("erase");
+	// }
 
 	//add sound of scene to journal
 	// if(currDepth > 5){ //only called if in a spot scene
@@ -366,7 +341,7 @@ function mouseClicked() {
 	// 			soundCollection.push(ctrlPkS);
 	// 		}
 	// 		else if(currDepth == 12) {
-	// 			soundCollection.push(broadwayS);
+	// 			soundCollection.push(sohoS);
 	// 		}
 	// 		else if(currDepth == 21) {
 	// 			soundCollection.push(bridgeS);
@@ -400,7 +375,7 @@ function mouseClicked() {
 				photoAlbum.push(ctrlPkP);
 			}
 			else if(currDepth == 12) {
-				photoAlbum.push(broadwayP);
+				photoAlbum.push(sohoP);
 			}
 			else if(currDepth == 21) {
 				photoAlbum.push(bridgeP);
@@ -577,54 +552,127 @@ function grandView() { //show larrge map and hotspots (eventually trains too)
 
 	//display sound journal 
 
-	// console.log(mouseX,mouseY);
+	console.log(mouseX,mouseY);
 }
 
 let currPhoto = 0;
 function drawAlbum(){
 	rectMode(CORNER);
 
-	//heading of panel
-	fill(0,0,0);
-	rect(30, 80, 266, 40, 20, 20, 0, 0); 
-	textSize(28);
-	textAlign(CENTER);
-	fill(255,255,255);
-	text('Album', 170, 102);
+	// //heading of panel
+	// fill(0,0,0);
+	// rect(30, 80, 266, 40, 13, 13, 0, 0); 
+	// textSize(21);
+	// textAlign(CENTER);
+	// fill(255,255,255);
+	// // text('Album', 170, 102);
+	// text('photos', 80, 102);
 
-	//main area
-	fill(255,255,255);
-	// let heightFactor; //determined how tall the panel will be based on num sounds in journal
-	if (soundCollection.length<=3) {
-		heightFactor = 1;
-	}
-	else if (soundCollection.length<=6) {
-		heightFactor = 2;
-	}
-	else {
-		heightFactor = 3;
-	}
-	// console.log(heightFactor);
-	rect(30, 120, 266, 200, 0);
-	textSize(18); 
-	fill(0,0,0);
-	text('Your album is empty. \nGo explore!', 170, 220);
+	//collapse/expand button
+	// fill(255,0,255);
+	// rect(256, 80, 40, 40, 0, 13, 0, 0);
+	if(collapseAlbum) { //show collapsed version of album
+		//heading of panel
+		fill(0,0,0);
+		rect(30, 80, 266, 40, 13); 
+		textSize(21);
+		textAlign(CENTER);
+		fill(255,255,255);
+		// text('Album', 170, 102);
+		text('photos', 80, 102);
 
-	//prevPhoto button
-	fill(255,255,255);
-	rect(30, 320, 133, 40, 0,0,0,20); 
-	textSize(24);
-	textAlign(CENTER);
-	fill(0,0,0);
-	text('Prev', 100, 342);
+		//show expand button
+		image(expandIcon,264, 88,23,23);
+	}
+	else { //show expanded version of album
+		//heading of panel
+		fill(0,0,0);
+		rect(30, 80, 266, 40, 13,13,0,0); 
+		textSize(21);
+		textAlign(CENTER);
+		fill(255,255,255);
+		// text('Album', 170, 102);
+		text('photos', 80, 102);
 
-	//nextPhoto button
-	fill(255,255,255);
-	rect(163, 320, 133, 40, 0,0,20,0); 
-	textSize(24);
-	textAlign(CENTER);
-	fill(0,0,0);
-	text('Next', 220, 342);
+		//gallery view button
+		fill(255,0,255);
+		rect(216, 80, 40, 40);
+		image(collapseIcon,264, 88,23,23);
+		// image(photoAlbum[currPhoto], 31,121, 266, 200);
+
+		//main area
+		fill(255,255,255);
+		// let heightFactor; //determined how tall the panel will be based on num sounds in journal
+		if (soundCollection.length<=3) {
+			heightFactor = 1;
+		}
+		else if (soundCollection.length<=6) {
+			heightFactor = 2;
+		}
+		else {
+			heightFactor = 3;
+		}
+		// console.log(heightFactor);
+		rect(30, 120, 266, 200, 0);
+		textSize(18); 
+		fill(0,0,0);
+		text('Your album is empty. \nGo explore!', 170, 220);
+
+		//prevPhoto button
+		fill(0,0,0);
+		rect(30, 320, 133, 40, 0,0,0,13); 
+		// textSize(24);
+		textAlign(CENTER);
+		fill(255,255,255);
+		text('Prev', 100, 342);
+
+		//nextPhoto button
+		fill(0,0,0);
+		rect(163, 320, 133, 40, 0,0,13,0); 
+		// textSize(24);
+		textAlign(CENTER);
+		fill(255,255,255);
+		text('Next', 220, 342);
+
+	}
+
+	// //gallery view button
+	// fill(255,255,255);
+	// rect(216, 80, 40, 40);
+
+	// //main area
+	// fill(255,255,255);
+	// // let heightFactor; //determined how tall the panel will be based on num sounds in journal
+	// if (soundCollection.length<=3) {
+	// 	heightFactor = 1;
+	// }
+	// else if (soundCollection.length<=6) {
+	// 	heightFactor = 2;
+	// }
+	// else {
+	// 	heightFactor = 3;
+	// }
+	// // console.log(heightFactor);
+	// rect(30, 120, 266, 200, 0);
+	// textSize(18); 
+	// fill(0,0,0);
+	// text('Your album is empty. \nGo explore!', 170, 220);
+
+	// //prevPhoto button
+	// fill(0,0,0);
+	// rect(30, 320, 133, 40, 0,0,0,13); 
+	// // textSize(24);
+	// textAlign(CENTER);
+	// fill(255,255,255);
+	// text('Prev', 100, 342);
+
+	// //nextPhoto button
+	// fill(0,0,0);
+	// rect(163, 320, 133, 40, 0,0,13,0); 
+	// // textSize(24);
+	// textAlign(CENTER);
+	// fill(255,255,255);
+	// text('Next', 220, 342);
 
 	
 	//show currPhoto
@@ -659,121 +707,117 @@ function albumPrev() { //functionality for album's prev button. shows prev photo
 
 
 let heightFactor; //determined how tall the panel will be based on num sounds in journal
+
 //holds all of the sounds collected (or made) by user
-class SoundJournal {
-	constructor() {
-		// this.soundCollection = [];
-		this.nowPlaying = false;
-	}
+// class SoundJournal {
+// 	constructor() {
+// 		// this.soundCollection = [];
+// 		this.nowPlaying = false;
+// 	}
 
-	display() {//draws sound journal based on how many sounds have been collected
+// 	display() {//draws sound journal based on how many sounds have been collected
 		
-		rectMode(CORNER);
+// 		rectMode(CORNER);
 
-		//heading of panel
-		fill(255,255,255);
-		rect(30, 80, 300, 40, 20, 20, 0, 0); 
-		textSize(28);
-		textAlign(CENTER);
-		fill(0, 102, 153);
-		text('Travel Journal', 180, 102);
+// 		//heading of panel
+// 		fill(255,255,255);
+// 		rect(30, 80, 300, 40, 20, 20, 0, 0); 
+// 		textSize(28);
+// 		textAlign(CENTER);
+// 		fill(0, 102, 153);
+// 		text('Travel Journal', 180, 102);
 
-		//main area
-		fill(255,255,255);
-		// let heightFactor; //determined how tall the panel will be based on num sounds in journal
-		if (soundCollection.length<=3) {
-			heightFactor = 1;
-		}
-		else if (soundCollection.length<=6) {
-			heightFactor = 2;
-		}
-		else {
-			heightFactor = 3;
-		}
-		// console.log(heightFactor);
-		rect(30, 120, 300, 80*heightFactor); 
-		// textSize(32);
-		// textAlign(CENTER);
-		// fill(0, 102, 153);
-		// text('Back', 80, 43);
-
-
-		//display sounds
-
-
-		//pause/play button
-		fill(255,255,255);
-		rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
-		textSize(24);
-		textAlign(CENTER);
-		fill(0, 102, 153);
-		if (!this.nowPlaying) {
-			text('Play', 140, 140+80*heightFactor);
-		}
-		else {
-			text('Pause', 140, 220);
-		}
+// 		//main area
+// 		fill(255,255,255);
+// 		// let heightFactor; //determined how tall the panel will be based on num sounds in journal
+// 		if (soundCollection.length<=3) {
+// 			heightFactor = 1;
+// 		}
+// 		else if (soundCollection.length<=6) {
+// 			heightFactor = 2;
+// 		}
+// 		else {
+// 			heightFactor = 3;
+// 		}
+// 		// console.log(heightFactor);
+// 		rect(30, 120, 300, 80*heightFactor); 
+// 		// textSize(32);
+// 		// textAlign(CENTER);
+// 		// fill(0, 102, 153);
+// 		// text('Back', 80, 43);
+// 		//display sounds
+// 		//pause/play button
+// 		fill(255,255,255);
+// 		rect(30, 120+80*heightFactor, 200, 40, 0,0,0,20); 
+// 		textSize(24);
+// 		textAlign(CENTER);
+// 		fill(0, 102, 153);
+// 		if (!this.nowPlaying) {
+// 			text('Play', 140, 140+80*heightFactor);
+// 		}
+// 		else {
+// 			text('Pause', 140, 220);
+// 		}
 
 
-		//erase button
-		fill(255,255,255);
-		rect(230, 120+80*heightFactor, 100, 40, 0,0,20,0); 
-		textAlign(CENTER);
-		fill(0, 102, 153);
-		text('Erase', 280, 140+80*heightFactor);
+// 		//erase button
+// 		fill(255,255,255);
+// 		rect(230, 120+80*heightFactor, 100, 40, 0,0,20,0); 
+// 		textAlign(CENTER);
+// 		fill(0, 102, 153);
+// 		text('Erase', 280, 140+80*heightFactor);
 
-	}
+// 	}
 
-	playSounds() { //plays all sounds in journal chronologically (maybe make an animation)
+// 	playSounds() { //plays all sounds in journal chronologically (maybe make an animation)
 
-	}
+// 	}
 
-	addSound(){
+// 	addSound(){
 
-	}
+// 	}
 
-	erase() {
-		this.soundCollection = [];
-	}
+// 	erase() {
+// 		this.soundCollection = [];
+// 	}
 
 
-	//removeSound() { //removes dragged sound from journal }
-}
+// 	//removeSound() { //removes dragged sound from journal }
+// }
 
 
 //move between stations
 
-let fontSizeMax = 10; //20
-let fontSizeMin = 1; //10
-let spacing = 3; // line height
-let kerning = 3; // between letters
+let fontSizeMax = 25; //20
+let fontSizeMin = 10; //10
+let fSize = 10;
+let spacing = 9; // line height
+let kerning = 2; // between letters
 
 function drawText(img,textArr) {
 	var x = 0;
 	var y = 10;
 	var counter = 0;
 
-	while (y < height) {
-		// translate position (display) to position (image)
+	while (y < height) { // translate position (display) to position (image)
 	    img.loadPixels();
-	    // get current color
+	    // get current color of pix
 	    var imgX = round(map(x, 0, width, 0, img.width));
 	    var imgY = round(map(y, 0, height, 0, img.height));
 	    var c = color(img.get(imgX, imgY));
-	    var greyscale = round(red(c) * 0.222 + green(c) * 0.707 + blue(c) * 0.071);
+	    // var greyscale = round(red(c) * 0.222 + green(c) * 0.707 + blue(c) * 0.071); //used to determine fontSize
 
 	    push();
 	    translate(x, y);
 
-	    var fontSize = map(greyscale, 0, 255, fontSizeMax, fontSizeMin);
-	    fontSize = max(fontSize, 1);
-	    textSize(fontSize);
+	    // var fontSize = map(greyscale, 0, 255, fontSizeMax, fontSizeMin);
+	    // fontSize = max(fontSize, 1);
+	    textSize(fSize);
 	    fill(c);
 
 	    var letter = textArr.charAt(counter);
 	    text(letter, 0, 0);
 	    var letterWidth = textWidth(letter) + kerning;
-	    // for the next letter ... x + letter width
 	    x += letterWidth;
 
 	    pop();
@@ -800,13 +844,20 @@ function drawText(img,textArr) {
 
 /////////BACK BUTTON FUNCTIONS//////////
 function drawBackButton() {
+	fill(0,0,0);
+	ellipse(50, 40, 53,53);
+
 	fill(255,255,255);
 	rectMode(CORNER);
-	rect(30, 20, 100, 40, 20);
-	textSize(24);
-	textAlign(CENTER);
+	ellipse(50, 40, 45,45);
+	// rect(30, 20, 100, 40, 20);
+	
 	fill(0,0,0);
-	text('Back', 80, 40);
+	triangle(37, 40, 57, 29, 57, 51);
+	// textSize(24);
+	// textAlign(CENTER);
+	// fill(0,0,0);
+	// text('Back', 80, 40);
 }
 
 //when back button is clicked, user moves to previous screen based on currDepth
@@ -829,7 +880,7 @@ function triggerBackButton() {
 		ctrlPkS.stop();
 	}
 	else if(currDepth == 12) {
-		broadwayS.stop();
+		sohoS.stop();
 	}
 	else if(currDepth == 21) {
 		bridgeS.stop();
@@ -862,70 +913,33 @@ function triggerBackButton() {
 		boroughs[currDepth-1].display(); //back to specific borough page
 	}
 
-	// if(currDepth == 11) {
-	// 	// image(ctrlPkP, 0, 0, width, height);
-	// 	// drawText(ctrlPkP,manhattanText);
-	// 	ctrlPkS.stop();
-	// }
-	// else if(currDepth == 12) {
-	// 	broadwayS.stop();
-	// }
-	// else if(currDepth == 21) {
-	// 	bridgeS.stop();
-	// }
-	// else if(currDepth == 22) {
-	// 	carnivalS.stop();
-	// }
-	// else if(currDepth == 31) {
-	// 	tennisS.stop();
-	// }
-	// else if(currDepth == 32) {
-	// 	airportS.stop();
-	// }
-	// else if(currDepth == 41) {
-	// 	zooS.stop();
-	// }
-	// else if(currDepth == 51) {
-	// 	ferryS.stop();
-	// }
-
-
-	//stop sound if playing
-
 }
-
-// function reviewTrip() {}
-
-
-let soundJournal = new SoundJournal();
 
 let mn = new Borough("Manhattan", 480, 330);
 mn.addSpot(500, 443, "Central Pk"); //Spot(locX,locY,image,sound,name))
-mn.addSpot(310, 707, "Broadway");
+mn.addSpot(310, 707, "SoHo");
 boroughs.push(mn);
 // let testSub = new Subspot(505,273,cp1);
 
 
 let bk = new Borough("Brooklyn", 535, 540);
-bk.addSpot(477, 141, "Bk Bridge"); //Spot(locX,locY,image,sound,name))
-bk.addSpot(600, 650, "Eastern Pkwy");
+bk.addSpot(477, 141, "Brooklyn Bridge"); //Spot(locX,locY,image,sound,name))
+bk.addSpot(600, 450, "Eastern Parkway");
 boroughs.push(bk);
 
 let qu = new Borough("Queens", 720, 370);
 qu.addSpot(570, 250, "US Open");//Spot(locX,locY,image,sound,name))
-qu.addSpot(640, 400, "JFK");
+// qu.addSpot(640, 400, "JFK");
 boroughs.push(qu);
 
 let bx = new Borough("Bronx", 650, 170);
-bx.addSpot(577, 500, "Bx Zoo"); //Spot(locX,locY,image,sound,name))
+bx.addSpot(577, 500, "Bronx Zoo"); //Spot(locX,locY,image,sound,name))
 boroughs.push(bx);
 
 // boroughs.push(new Borough("Bronx", 650, 170));
 let si = new Borough("Staten Island", 290, 540);
-si.addSpot(760, 150, "SI Ferry"); //Spot(locX,locY,image,sound,name))
+si.addSpot(760, 150, "Staten Island Ferry"); //Spot(locX,locY,image,sound,name))
 boroughs.push(si);
-
-// constructor(depth, locX,locY,image,sound="",name="")
 
 //Things to look at
 //https://editor.p5js.org/J-Cake/sketches/1r1wmWO60 
